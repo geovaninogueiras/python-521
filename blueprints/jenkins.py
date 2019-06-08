@@ -1,7 +1,10 @@
 
 import flask
+import jenkins
 
 blueprint = flask.Blueprint('jenkins', __name__)
+
+connections = jenkins.Jenkins('http://localhost:8080', '4linux', '4linux123')
 
 @blueprint.route('/jenkins', methods=[ 'GET' ])
 def get_jenkins():
@@ -11,6 +14,7 @@ def get_jenkins():
         'route': {
             'is_public': False
         },
+        'containers': connections.
     }
 
     return flask.render_template('jenkins.html', context=context)
@@ -27,6 +31,7 @@ def get_jenkins_update(jobname):
         'route': {
             'is_public': False
         },
+        
     }
 
     return flask.render_template('jenkins_update.html', context=context)
