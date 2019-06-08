@@ -14,7 +14,7 @@ def get_jenkins():
         'route': {
             'is_public': False
         },
-        'containers': connections.
+        'containers': connections
     }
 
     return flask.render_template('jenkins.html', context=context)

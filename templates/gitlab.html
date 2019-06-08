@@ -28,19 +28,25 @@
   <table class="table table-hover table-striped">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Email</th>
-        <th scope="col">Usuário</th>
-        <th scope="col">Status</th>
-        <th scope="col">Admin</th>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Dono</th>
+        <th scope="col">Commits</th>
       </tr>
     </thead>
     <tbody>
+      {% for p in context.projetecs %}
       <tr>
-        <td>== Email do Usuário ==</td>
-        <td>== Nome do Usuário ==</td>
-        <td>== Status do Usuário ==</td>
-        <td>== Usuário é Admin ==</td>
+        <td>{{ p.id }}</td>
+        <td>{{ p.name }}</td>
+        <td>{{ p.owner.name }}</td>
+        <td>
+          <a href="/gitlab/{{p.id}}/commits" title="Commits do projeto {{p.name}}" >
+            <i class="fas fa-book-open"></i>
+          </a>
+        </td>
       </tr>
+      {% endfor %}
     </tbody>
   </table>
 </section>
@@ -51,19 +57,19 @@
   <table class="table table-hover table-striped">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Nome do Projeto</th>
-        <th scope="col">Link SSH</th>
-        <th scope="col">Dono</th>
-        <th scope="col">Caminho</th>      
+        <th scope="col">Autor</th>
+        <th scope="col">Mensagem</th>
+        <th scope="col">Data</th>   
       </tr>
     </thead>
-    <tbody>
+    <tbody>]
+      {% for c in  context.commits %}
       <tr>
-        <td>== Nome do Projeto ==</td>
-        <td>== SSH do Usuário ==</td>
-        <td>== Username do Dono do Projeto ==</td>
-        <td>== Caminho do Projeto ==</td>      
+        <td>{{ c.author_name }}</td>   
+        <td>{{ c.message }}</td>   
+        <td>{{ c.committed_date }}</td>   
       </tr>
+      {% endfor %}
     </tbody>
   </table>
 </section>
